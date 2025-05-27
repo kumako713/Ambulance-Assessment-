@@ -8,17 +8,18 @@
     body {
       font-family: sans-serif;
       background: #f9f9f9;
+      padding: 20px;
       display: flex;
       justify-content: center;
-      padding: 30px;
     }
 
     .grid-container {
       display: grid;
-      grid-template-columns: repeat(3, 120px);
+      grid-template-columns: repeat(4, 1fr);
       grid-auto-rows: minmax(60px, auto);
       gap: 10px;
-      max-width: 400px;
+      max-width: 600px;
+      width: 100%;
     }
 
     .btn, .label {
@@ -45,21 +46,10 @@
     }
 
     .wide {
-      grid-column: span 3;
+      grid-column: span 4;
     }
 
-    .triple {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 5px;
-      grid-column: span 3;
-    }
-
-    .tall {
-      grid-row: span 2;
-    }
-
-    .double {
+    .half {
       grid-column: span 2;
     }
   </style>
@@ -69,27 +59,24 @@
     <button class="btn">安全</button>
     <button class="btn">量能</button>
     <button class="btn">PPE</button>
+    <button class="btn">進場</button>
 
-    <button class="btn wide">進場</button>
+    <button class="btn wide">評估</button>
 
-    <button class="btn double">評估</button>
-    <div class="triple">
-      <button class="btn">病史</button>
-      <button class="btn">交接</button>
-      <button class="btn">處置</button>
-    </div>
+    <button class="btn">病史</button>
+    <button class="btn">交接</button>
+    <button class="btn">處置</button>
+    <div></div> <!-- 空格補滿4欄 -->
 
     <div class="label alert wide">危急度判斷</div>
 
-    <button class="btn tall">
-      意識<br>呼吸<br>脈搏<br>血壓<br>瞳孔<br>體溫<br>膚色<br>SpO₂
-    </button>
-    <button class="btn double tall">
-      從頭到腳<br>理學檢查
-    </button>
+    <button class="btn">意識<br>呼吸<br>脈搏<br>血壓</button>
+    <button class="btn">瞳孔<br>體溫<br>膚色<br>SpO₂</button>
+    <button class="btn">從頭到腳</button>
+    <button class="btn">理學檢查</button>
 
-    <button class="btn">IMIST</button>
-    <button class="btn">ISBAR</button>
+    <button class="btn half">IMIST</button>
+    <button class="btn half">ISBAR</button>
   </div>
 
   <script>
