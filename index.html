@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>急救流程互動頁面</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(3, 120px);
+      gap: 10px;
+      max-width: 400px;
+    }
+
+    .btn {
+      background-color: #ffffff;
+      border: 2px solid #003366;
+      color: #003366;
+      font-size: 16px;
+      padding: 10px;
+      text-align: center;
+      line-height: 1.4;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background-color: #e0ecff;
+    }
+
+    .wide {
+      grid-column: span 3;
+    }
+
+    .tall {
+      grid-row: span 2;
+    }
+
+    .alert {
+      grid-column: span 3;
+      background-color: #fff0f0;
+      color: #cc0000;
+      font-weight: bold;
+      border: 2px solid #cc0000;
+      text-align: center;
+      line-height: 2;
+      cursor: default;
+    }
+  </style>
+</head>
+<body>
+  <div class="grid-container">
+    <button class="btn">安全</button>
+    <button class="btn">量能</button>
+    <button class="btn">PPE</button>
+    <button class="btn wide">進場</button>
+    <button class="btn">評估</button>
+    <button class="btn">病史</button>
+    <button class="btn">交接</button>
+    <button class="btn">處置</button>
+    <div class="btn alert">危急度判斷</div>
+    <button class="btn tall">
+      意識<br>呼吸<br>脈搏<br>血壓<br>瞳孔<br>體溫<br>膚色<br>SPO₂
+    </button>
+    <button class="btn tall">從頭到腳<br>理學檢查</button>
+    <button class="btn">IMIST</button>
+    <button class="btn">ISBAR</button>
+  </div>
+
+  <script>
+    document.querySelectorAll(".btn").forEach(button => {
+      // 只讓不是 alert 的格子可以互動
+      if (!button.classList.contains("alert")) {
+        button.addEventListener("click", () => {
+          alert("你點選了：「" + button.innerText.trim() + "」");
+        });
+      }
+    });
+  </script>
+</body>
+</html>
