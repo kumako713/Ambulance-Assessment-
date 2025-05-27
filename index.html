@@ -8,81 +8,110 @@
     body {
       font-family: sans-serif;
       background: #f9f9f9;
+      padding: 20px;
       display: flex;
       justify-content: center;
-      padding: 30px;
     }
 
-    .grid-container {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(3, 120px);
+      grid-template-areas:
+        "safety energy ppe"
+        "entry entry entry"
+        "assess history handover treat"
+        "urgency urgency urgency"
+        "vitals vitals exam"
+        "imist isbar isbar";
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-auto-rows: minmax(60px, auto);
       gap: 10px;
-      max-width: 400px;
+      width: 420px;
     }
 
-    .btn {
-      background-color: #ffffff;
+    .grid button,
+    .grid .label {
       border: 2px solid #003366;
+      background-color: #fff;
       color: #003366;
       font-size: 16px;
-      padding: 10px;
       text-align: center;
+      padding: 10px;
       line-height: 1.4;
       cursor: pointer;
-      transition: 0.3s;
     }
 
-    .btn:hover {
-      background-color: #e0ecff;
-    }
-
-    .wide {
-      grid-column: span 3;
-    }
-
-    .tall {
-      grid-row: span 2;
+    .label {
+      cursor: default;
     }
 
     .alert {
-      grid-column: span 3;
       background-color: #fff0f0;
       color: #cc0000;
+      border-color: #cc0000;
       font-weight: bold;
-      border: 2px solid #cc0000;
-      text-align: center;
-      line-height: 2;
-      cursor: default;
+    }
+
+    .grid .long {
+      grid-column: span 3;
+    }
+
+    .grid .vitals {
+      grid-row: span 2;
+    }
+
+    /* Grid area assignment */
+    .safety   { grid-area: safety; }
+    .energy   { grid-area: energy; }
+    .ppe      { grid-area: ppe; }
+    .entry    { grid-area: entry; }
+    .assess   { grid-area: assess; }
+    .history  { grid-area: history; }
+    .handover { grid-area: handover; }
+    .treat    { grid-area: treat; }
+    .urgency  { grid-area: urgency; }
+    .vitals   { grid-area: vitals; }
+    .exam     { grid-area: exam; }
+    .imist    { grid-area: imist; }
+    .isbar    { grid-area: isbar; }
+
+    /* Special layout fix for 4-element row (病史 交接 處置) */
+    .history, .handover, .treat {
+      font-size: 14px;
+      padding: 8px;
+    }
+
+    .grid .imist, .grid .isbar {
+      height: 50px;
     }
   </style>
 </head>
 <body>
-  <div class="grid-container">
-    <button class="btn">安全</button>
-    <button class="btn">量能</button>
-    <button class="btn">PPE</button>
-    <button class="btn wide">進場</button>
-    <button class="btn">評估</button>
-    <button class="btn">病史</button>
-    <button class="btn">交接</button>
-    <button class="btn">處置</button>
-    <div class="btn alert">危急度判斷</div>
-    <button class="btn tall">
-      意識<br>呼吸<br>脈搏<br>血壓<br>瞳孔<br>體溫<br>膚色<br>SPO₂
-    </button>
-    <button class="btn tall">從頭到腳<br>理學檢查</button>
-    <button class="btn">IMIST</button>
-    <button class="btn">ISBAR</button>
+  <div class="grid">
+    <button class="btn safety">安全</button>
+    <button class="btn energy">量能</button>
+    <button class="btn ppe">PPE</button>
+
+    <button class="btn entry long">進場</button>
+
+    <button class="btn assess">評估</button>
+    <button class="btn history">病史</button>
+    <button class="btn handover">交接</button>
+    <button class="btn treat">處置</button>
+
+    <div class="label alert urgency">危急度判斷</div>
+
+    <button class="btn vitals">意識<br>呼吸<br>脈搏<br>血壓<br>瞳孔<br>體溫<br>膚色<br>SpO₂</button>
+    <button class="btn exam">從頭到腳<br>理學檢查</button>
+
+    <button class="btn imist">IMIST</button>
+    <button class="btn isbar">ISBAR</button>
   </div>
 
   <script>
     document.querySelectorAll(".btn").forEach(button => {
-      // 只讓不是 alert 的格子可以互動
-      if (!button.classList.contains("alert")) {
-        button.addEventListener("click", () => {
-          alert("你點選了：「" + button.innerText.trim() + "」");
-        });
-      }
+      button.addEventListener("click", () => {
+        alert("你點選了：「" + button.innerText.trim() + "」");
+      });
     });
   </script>
 </body>
